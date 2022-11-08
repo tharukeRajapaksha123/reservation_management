@@ -1,24 +1,37 @@
-import logo from './logo.svg';
-import './App.css';
+import styled from "styled-components"
+import Header from './Header';
+import HomeBodyManger from './HomeBodyManger';
+import { useState } from "react"
+import "antd/dist/antd.css";
+
+const Container = styled.div`
+    height : 100vh;
+    background-size: cover;
+    background-position : center;
+    background-repeat: no-repeat;
+    display:flex;
+    flex-direction:column;
+    justify-content:space-between; //vertical alignment
+    align-items:center; //horizonmtal alignment
+    background-color:black;
+`
+
 
 function App() {
+
+  const [activeIndex, setActiveIndex] = useState(0)
+  const indexChanger = (index) => {
+
+    setActiveIndex(index)
+    console.log("called ===> " + activeIndex)
+  }
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <Container style={{backgroundImage : `url("https://i.pinimg.com/originals/13/c4/04/13c404f26d6323ac9ee69167fabf3b8f.jpg")`}}>
+        <Header indexChanger={indexChanger}  activeIndex= {activeIndex}/>
+        <HomeBodyManger activeIndex={activeIndex} stateChanger={indexChanger}/>
+      </Container>
+    </>
   );
 }
 
